@@ -1,0 +1,41 @@
+<div class="page">
+  <div class="card">
+    <h1>ChronoKB — Chat</h1>
+
+    <div class="row">
+      <label>User ID</label>
+      <input [(ngModel)]="userId" placeholder="demo-user" />
+      <label>TopK</label>
+      <input type="number" [(ngModel)]="topK" min="1" max="20" />
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="row">
+      <input [(ngModel)]="urlToIngest" placeholder="Ingest Web URL (optional) e.g. https://example.com" />
+      <button (click)="ingestUrl()" [disabled]="loading">Ingest URL</button>
+    </div>
+
+    <div class="row">
+      <input type="file" (change)="onAudioSelected($event)" accept=".mp3,.m4a,.wav,.mp4" />
+      <button (click)="ingestAudio()" [disabled]="loading || !audioFile">Ingest Audio</button>
+    </div>
+
+    <div class="small">After ingesting, wait for Job status = DONE.</div>
+    <div class="meta">{{ jobText }}</div>
+
+    <div class="sep"></div>
+
+    <div class="row">
+      <input [(ngModel)]="queryText" (keydown.enter)="ask()" placeholder="Ask a question..." />
+      <button (click)="ask()" [disabled]="loading">Ask</button>
+    </div>
+
+    <div class="chat">
+      <div *ngFor="let m of messages" class="msg" [class.user]="m.who==='user'" [class.bot]="m.who==='bot'">
+        <pre>{{ m.text }}</pre>
+      </div>
+      <div id="chatEnd"></div>
+    </div>
+  </div>
+</div>
