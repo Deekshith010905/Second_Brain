@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://insightful-rebirth-production-5e10.up.railway.app",
+    "target": "http://localhost:8080",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
